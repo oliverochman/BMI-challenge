@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script src="src/person.js"></script>
+  <script src="src/bmi_calculator.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.js"></script>
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.css" />
+</head>
+
+<body>
+  <div class="row ">
+    <div class="medium-12 columns">
+      <ul class="tabs" data-tabs id="example-tabs">
+        <li class="tabs-title is-active"><a href="#metric-panel" aria-selected="true">Metric calculation</a></li>
+        <li class="tabs-title"><a data-tabs-target="imperial-panel" href="#imperial-panel">Imperial calculation</a></li>
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="tabs-content" data-tabs-content="example-tabs">
+    <div class="tabs-panel is-active" id="metric-panel">
+      <form>
+        <input type="text" id="weight_met" placeholder="Weight in kg">
+        <input type="text" id="height_met" placeholder="Height in cm">
+        <input type="button" id="calculate_metric" value="Calculate" class="button">
+      </form>
+      <div>
+        <span id="display_value_metric"></span>
+        <span id="display_message_metric"></span>
+
+      </div>
+    </div>
+    <div class="tabs-panel" id="imperial-panel">
+      <form>
+        <input type="text" id="weight_imp" placeholder="Weight in lbs">
+        <input type="text" id="height_imp" placeholder="Height in inches">
+        <input type="button" id="calculate-imperial" value="Calculate" class="button">
+      </form>
+      <div>
+        <span id="display_value_imperial"></span>
+        <span id="display_message_imperial"></span>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).foundation();
+      $(document).ready(function() {
+        $('#calculate_metric').click(function() {
+          var w = parseFloat($('#weight_met').val());
+          var h = parseFloat($('#height_met').val());
+          var person = new Person({
+            weight: w,
+            height: h
+          });
+          person.calculate_bmi_metric();
+          $('#display_value_metric').html('Your BMI is ' + person.bmiValue);
+          $('#display_message_metric').html('and you are ' + person.bmiMessage);
+        });
+
+        $('#calculate-imperial').click(function() {
+          var w = parseFloat($('#weight_imp').val());
+          var h = parseFloat($('#height_imp').val());
+          var person = new Person({
+            weight: w,
+            height: h
+          });
+          person.calculate_bmi_imperial();
+          $('#display_value_imperial').html('Your BMI is ' + person.bmiValue);
+          $('#display_message_imperial').html('and you are ' + person.bmiMessage);
+        });
+
+
+      });
+    </script>
+
+</body>
+
+
+</html>
