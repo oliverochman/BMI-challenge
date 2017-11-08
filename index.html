@@ -18,6 +18,7 @@
       <ul class="tabs" data-tabs id="example-tabs">
         <li class="tabs-title is-active"><a href="#metric-panel" aria-selected="true">Metric calculation</a></li>
         <li class="tabs-title"><a data-tabs-target="imperial-panel" href="#imperial-panel">Imperial calculation</a></li>
+        <li class="tabs-title"><a data-tabs-target="info-panel" href="#info-panel">BMI info</a></li>
       </ul>
     </div>
   </div>
@@ -40,13 +41,14 @@
       <form>
         <input type="text" id="weight_imp" placeholder="Weight in lbs">
         <input type="text" id="height_imp" placeholder="Height in inches">
-        <input type="button" id="calculate-imperial" value="Calculate" class="button">
+        <input type="button" id="calculate_imperial" value="Calculate" class="button">
       </form>
       <div>
         <span id="display_value_imperial"></span>
         <span id="display_message_imperial"></span>
       </div>
     </div>
+    <
 
     <script type="text/javascript">
       $(document).foundation();
@@ -63,7 +65,7 @@
           $('#display_message_metric').html('and you are ' + person.bmiMessage);
         });
 
-        $('#calculate-imperial').click(function() {
+        $('#calculate_imperial').click(function() {
           var w = parseFloat($('#weight_imp').val());
           var h = parseFloat($('#height_imp').val());
           var person = new Person({
