@@ -23,11 +23,12 @@ describe('BMI_UI_imperial - index.html', function() {
     $.holdReady(false);
     $('.tabs-title:contains("Imperial")').click();
     $('#weight_imp').val('198.41');
-    $('#height_imp').val('73.22');
+    $('#height_f_imp').val('6');
+    $('#height_inc_imp').val('0.1');
     $('#calculate_imperial').trigger('click');
   });
   it("displays BMI Value", function() {
-    expect($('#display_value_imperial').text()).toBe('Your BMI is 26.02');
+    expect($('#display_value_imperial').text()).toBe('Your BMI is 26.83');
   });
 
   it("displays BMI Message", function() {

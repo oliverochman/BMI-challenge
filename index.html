@@ -10,45 +10,77 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.js"></script>
   <link rel="stylesheet" href="/css/app.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-  <div class="row ">
-    <div class="medium-12 columns">
+<body
+  <div class="grid-x">
+    <div class="medium-6 large-3 cell"></div>
+    <div class="medium-6 large-5 cell">
+      <div class="cell text-center"><h2>BMICalculator</h2></div>
+
       <ul class="tabs" data-tabs id="example-tabs">
         <li class="tabs-title is-active"><a href="#metric-panel" aria-selected="true">Metric calculation</a></li>
         <li class="tabs-title"><a data-tabs-target="imperial-panel" href="#imperial-panel">Imperial calculation</a></li>
-        <li class="tabs-title"><a data-tabs-target="info-panel" href="#info-panel">BMI info</a></li>
+        <li class="tabs-title"><a data-tabs-target="info-panel" href="#info-panel">BMI graph</a></li>
       </ul>
+
+      <div class="tabs-content" data-tabs-content="example-tabs">
+        <div class="tabs-panel is-active" id="metric-panel">
+          <form>
+            <input type="text" id="weight_met" placeholder="Weight in kg">
+            <input type="text" id="height_met" placeholder="Height in cm">
+            <input type="button" id="calculate_metric" value="Calculate" class="button">
+          </form>
+          <div>
+            <span id="display_value_metric"></span>
+            <span id="display_message_metric"></span>
+
+          </div>
+        </div>
+        <div class="tabs-panel" id="imperial-panel">
+          <form>
+            <input type="text" id="weight_imp" placeholder="Weight in lbs">
+            <input type="text" id="height_f_imp" placeholder="Height in feet">
+            <input type="text" id="height_inc_imp" placeholder="Height in inches">
+            <input type="button" id="calculate_imperial" value="Calculate" class="button">
+          </form>
+          <div>
+            <span id="display_value_imperial"></span>
+            <span id="display_message_imperial"></span>
+          </div>
+        </div>
+        <div class="tabs-panel" id="info-panel">
+          <form>
+            <table style="width:100%">
+              <tr>
+                <th>BMI</th>
+                <th>Weight Status</th>
+              </tr>
+              <tr>
+                <td>Below 18.5</td>
+                <td>Underweight</td>
+              </tr>
+              <tr>
+                <td>Below 18.5 - 24.9</td>
+                <td>Normal</td>
+              </tr>
+              <tr>
+                <td>Below 25 - 29.9</td>
+                <td>Overweight</td>
+              </tr>
+              <tr>
+                <td>Over 30.0</td>
+                <td>Obese</td>
+            </tr>
+          </table>
+        </form>
+      </div>
     </div>
   </div>
 
 
-  <div class="tabs-content" data-tabs-content="example-tabs">
-    <div class="tabs-panel is-active" id="metric-panel">
-      <form>
-        <input type="text" id="weight_met" placeholder="Weight in kg">
-        <input type="text" id="height_met" placeholder="Height in cm">
-        <input type="button" id="calculate_metric" value="Calculate" class="button">
-      </form>
-      <div>
-        <span id="display_value_metric"></span>
-        <span id="display_message_metric"></span>
 
-      </div>
-    </div>
-    <div class="tabs-panel" id="imperial-panel">
-      <form>
-        <input type="text" id="weight_imp" placeholder="Weight in lbs">
-        <input type="text" id="height_imp" placeholder="Height in inches">
-        <input type="button" id="calculate_imperial" value="Calculate" class="button">
-      </form>
-      <div>
-        <span id="display_value_imperial"></span>
-        <span id="display_message_imperial"></span>
-      </div>
-    </div>
-    <
 
     <script type="text/javascript">
       $(document).foundation();
@@ -67,10 +99,11 @@
 
         $('#calculate_imperial').click(function() {
           var w = parseFloat($('#weight_imp').val());
-          var h = parseFloat($('#height_imp').val());
+          var h_f = parseFloat($('#height_f_imp').val());
+          var h_inc = parseFloat($('#height_inc_imp').val());
           var person = new Person({
             weight: w,
-            height: h
+            height: h_f * 12 + h_inc
           });
           person.calculate_bmi_imperial();
           $('#display_value_imperial').html('Your BMI is ' + person.bmiValue);

@@ -1,0 +1,36 @@
+body {
+  background-color: #eee;
+}
+h1, h2 {
+  color: #00cc99;
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+p {
+  font-family: sans-serif;
+  padding: 20px;
+  font-size: 15px;
+}
+
+form {
+  font-family: sans-serif;
+  padding: 20px
+}
+
+table {
+  font-family: sans-serif;
+  width: 50%;
+}
+td {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+th {
+  background-color: #00cc99;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid black;
+}
