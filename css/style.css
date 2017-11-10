@@ -1,5 +1,8 @@
 body {
-  background-color: #eee;
+  background: url("../images/bakgrund.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #cccccc;
 }
 h1, h2 {
   color: #00cc99;
@@ -33,4 +36,14 @@ th {
   padding: 8px;
   text-align: center;
   border: 1px solid black;
+}
+
+.tabs-content, .tabs {
+  opacity: 0.8;
+}
+
+input[type=text] {
+    background-color: white;
+    opacity: 0.9 !important;
+    color: grey;
 }
